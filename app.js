@@ -112,7 +112,8 @@ function showScreen(id){
 function connectWebSocket(){
   const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
   const host = window.location.host;
-  ws = new WebSocket(proto + "//" + host);
+  const p = window.location.pathname.replace(/\/+$/, "");
+  ws = new WebSocket(proto + "//" + host + p);
 
   ws.onopen = () => { console.log("WebSocket ulandi"); };
 
@@ -183,11 +184,6 @@ function handleServerMessage(msg){
         drawBoard();
         updateHeader();
         updateTimers();
-      }
-      break;
-        case "chat":
-      if(currentGameId === msg.gameId){
-        addChatMessage(msg.from, msg.text);
       }
       break;
         case "chat":
