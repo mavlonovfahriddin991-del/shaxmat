@@ -1,0 +1,97 @@
+# build index.html
+
+import os
+
+DST = "c:/Users/MARUFXON/Desktop/12"
+
+html = '''<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shaxmat Arena</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="glyph">&#9822;</span> Shaxmat Arena</div>
+  <div class="user-badge" id="userBadge" style="display:none">
+    <span class="dot"></span> <span id="userBadgeName"></span>
+    <button id="logoutBtn">Chiqish</button>
+  </div>
+</header>
+<main>
+<section id="screen-register" class="screen active">
+  <div class="reg-card">
+    <div class="king">&#9818;</div>
+    <h1>Ro\'yxatdan o\'tish</h1>
+    <p>Ismingizni kiriting va onlayn o\'yinchilar bilan shaxmat o\'ynang.</p>
+    <input id="usernameInput" type="text" placeholder="Foydalanuvchi nomi" maxlength="18" autocomplete="off">
+    <button class="btn-primary" id="registerBtn">O\'yinga kirish</button>
+    <div class="reg-error" id="regError"></div>
+  </div>
+</section>
+<section id="screen-lobby" class="screen">
+  <div class="invites-banner" id="incomingInvites"></div>
+  <div class="lobby-grid">
+    <div class="panel players-panel">
+      <h2>Onlayn o\'yinchilar</h2>
+      <p class="sub">Taklif yuboring va real vaqtda o\'ynang</p>
+      <div class="online-list" id="onlineList"><div class="empty-state">Qidirilmoqda...</div></div>
+    </div>
+    <div class="panel ai-panel">
+      <span class="glyph">&#9823;</span>
+      <h2>Kompyuterga qarshi</h2>
+      <p class="sub">Onlayn raqib bo\'lmasa, sun\'iy intellektga qarshi mashq qiling</p>
+      <button class="btn-ai" id="playAiBtn">Sun\'iy intellekt bilan o\'ynash</button>
+      <div class="ai-hint" id="aiHint"></div>
+    </div>
+  </div>
+</section>
+<section id="screen-waiting" class="screen">
+  <div class="spinner"></div>
+  <p><span class="target" id="waitingTarget"></span> javobini kutmoqdamiz...</p>
+  <div class="game-actions" style="margin-top:24px"><button class="btn-leave" id="cancelWaitBtn">Bekor qilish</button></div>
+</section>
+<section id="screen-game" class="screen">
+  <div class="game-header">
+    <div class="player-tag" id="playerTop">
+      <span class="timer" id="oppTimer">10:00</span>
+      <span class="pname" id="pTopName"></span>
+      <span class="piece-icon" id="pTopIcon"></span>
+    </div>
+    <div class="game-status" id="gameStatus"></div>
+    <div class="player-tag" id="playerBottom">
+      <span class="piece-icon" id="pBotIcon"></span>
+      <span class="pname" id="pBotName"></span>
+      <span class="timer" id="myTimer">10:00</span>
+    </div>
+  </div>
+  <div class="game-layout">
+    <div class="board-wrap">
+      <div class="ranks" id="ranksCol"></div>
+      <div class="board-col">
+        <div class="board" id="board"></div>
+        <div class="files" id="filesRow"></div>
+      </div>
+    </div>
+    <div class="chat-sidebar" id="chatBox">
+      <div class="chat-header">&#128172; Chat</div>
+      <div class="chat-messages" id="chatMessages"></div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Xabar yozing..." autocomplete="off">
+        <button class="chat-send" id="chatSendBtn">&#10148;</button>
+      </div>
+    </div>
+  </div>
+  <div class="game-actions"><button class="btn-leave" id="leaveGameBtn">O\'yindan chiqish</button></div>
+</section>
+<p class="note">Online o\'yin WebSocket orqali sinxronlanadi. Har bir o\'yinchiga 10 daqiqa vaqt.</p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>'''
+
+with open(DST + "/index.html", "w", encoding="utf-8") as f:
+    f.write(html)
+print("index.html done:", len(html), "chars")

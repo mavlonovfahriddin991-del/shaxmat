@@ -1,0 +1,1 @@
+import sys\nimport os\nsys.stdout.reconfigure(encoding=" utf-8\)\namp = chr(38)\np = \c:/Users/MARUFXON/Desktop/12/index.html\\nd = open(p, \w\, encoding=\utf-8\)\nd.write(\HTML_START\\n\)\nd.close()\nprint(\done\)

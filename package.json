@@ -1,0 +1,15 @@
+{
+  "name": "shaxmat-arena",
+  "version": "1.0.0",
+  "description": "Shaxmat Arena - online shaxmat o'yini",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2",
+    "uuid": "^9.0.1",
+    "ws": "^8.21.0"
+  }
+}
