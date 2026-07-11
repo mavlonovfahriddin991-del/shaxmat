@@ -6,7 +6,16 @@ const path = require("path");
 const app = express();
 app.set("trust proxy", 1);
 const server = http.createServer(app);
-const wss = new WebSocketServer({ server });
+
+// WebSocket - handle upgrade ourselves to avoid conflict
+const wss = new WebSocketServer({ noServer: true });
+
+server.on("upgrade", function upgrade(request, socket, head) {
+  // Accept all WebSocket connections
+  wss.handleUpgrade(request, socket, head, function done(ws) {
+    wss.emit("connection", ws, request);
+  });
+});
 
 app.use(express.static(path.join(__dirname, "./")));
 

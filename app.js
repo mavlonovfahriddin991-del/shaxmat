@@ -112,8 +112,7 @@ function showScreen(id){
 function connectWebSocket(){
   const proto = window.location.protocol === "https:" ? "wss:" : "ws:";
   const host = window.location.host;
-  const p = window.location.pathname.replace(/\/+$/, "");
-  ws = new WebSocket(proto + "//" + host + p);
+  ws = new WebSocket(proto + "//" + host + window.location.pathname);
 
   ws.onopen = () => { console.log("WebSocket ulandi"); };
 
@@ -191,7 +190,7 @@ function handleServerMessage(msg){
         addChatMessage(msg.from, msg.text);
       }
       break;
-    case "gameEnded":
+        case "gameEnded":
       if(currentGameId === msg.gameId){
         alert("Raqib o'yindan chiqib ketdi.");
         currentGameId = null;
